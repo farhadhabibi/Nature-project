@@ -1,0 +1,54 @@
+.header {
+    // height: 95vh;
+    height: 85vh;
+    background-image: linear-gradient(
+        to right bottom,
+        rgba($color-primary-light, 0.801),
+        rgba($color-primary-dark, 0.801)),
+        url('../img/hero-small.jpg');
+    background-size: cover;
+    background-position: top;
+    // clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+    position: relative;
+
+    // if supported works if not the above hieght will be applied (height: 85vh;)
+    @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0, 0)) {
+        clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+        height: 95vh;
+    }
+
+// dot per ing (dpi).  use below image responsive in 2x resolution.
+// and if the width is greater that 600px cause 600 * 2 = 1200 and no need to use 2000px image.
+// this is only for higher resolution screen (DPR: 2) (device pixel ratio: 2)
+// for lower resolution screen use the or one (,) means or
+    @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em),
+            only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em),
+            only screen and (min-width: 125em)  {  
+        background-image: linear-gradient(
+        to right bottom,
+        rgba($color-secondary-light, 0.801),
+        rgba($color-secondary-dark, 0.801)),
+        url('../img/hero.jpg');
+    }
+
+    @include respond(phone) {
+        clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+    }
+
+    &__logo-box {
+        position: absolute;
+        top: 4rem;
+        left: 4rem;
+    }
+    &__logo {
+        height: 3.5rem;
+    }
+    &__text-box {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%); 
+      text-align: center
+    }
+}
